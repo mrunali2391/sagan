@@ -14,15 +14,15 @@ RUN mkdir -p /usr/local/sagan
 # Set work dir
 WORKDIR /usr/local/
 
-COPY ./* /usr/local/sagan
-COPY tools.jar /usr/local/openjdk-8/lib/tools.jar
+COPY sagan/* /usr/local/sagan
 
-#RUN ln -sf /usr/lib/jvm/java-8-openjdk-amd64 /usr/local/openjdk-8
+COPY sagan/tools.jar /usr/local/openjdk-8/lib/tools.jar
+
 
 WORKDIR /usr/local/sagan
 
 # Add required files
-ADD entrypoint.sh ./
+ADD sagan/entrypoint.sh ./
 
 
 
