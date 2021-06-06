@@ -5,9 +5,9 @@ pipeline {
      }
     environment {
         GITHUB = credentials('gitHubCredentials')
-	registry = "akshaygirpunje/sagan-deploy"
+        registry = "akshaygirpunje/sagan-deploy"
         registryCredential = "dockerHubCredentials"
-	dockerImage = " "
+        dockerImage = " "
 
     }
 
@@ -23,7 +23,7 @@ pipeline {
                             #!/bin/bash
                             echo "This is start $(pwd)"
                             cd  ./deploy
-                            ./gradlew build                             
+                            ./gradlew build
                             '''
                         sh script:'''
                            #!/bin/bash
@@ -47,16 +47,30 @@ pipeline {
                             steps {
                                 echo '=== Pushing sagan Docker Image ==='
                                 script {
-			          docker.withRegistry( '', registryCredential ) {
-				       dockerImage.push()
-				          }
-					}
+                                  docker.withRegistry( '', registryCredential ) {
+                                       dockerImage.push()
+                                          }
+                                        }
                             }
                 }
                 stage('Remove local images') {
                                              steps{
                                              sh "docker rmi $registry:$BUILD_NUMBER"
                                                }
-									}
+                                                                        }
+
+                stage('Deployment on minikube') {
+                                             steps{
+                                                              script {
+                     sshagent(credentials : ['terraform-testing']) {
+                        sh "echo pwd"
+                        sh 'ssh -o StrictHostKeyChecking=no -q  ubuntu@172.16.10.175'
+                        sh 'kubectl get pod'
+                        sh 'kubectl set image Deployment/sagan-spring sagan-spring=akshaygirpunje/sagan-deploy:$BUILD_NUMBER --record'
+                        sh 'echo pwd'
+                    }
+                 }                                               }
+                                                                        }																		
     }
 }
+
