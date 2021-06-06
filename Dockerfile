@@ -14,7 +14,7 @@ RUN mkdir -p /usr/local/sagan
 # Set work dir
 WORKDIR /usr/local/
 
-COPY sagan /usr/local/sagan
+COPY ../sagan /usr/local/sagan
 COPY tools.jar /usr/local/openjdk-8/lib/tools.jar
 
 RUN ln -sf /usr/lib/jvm/java-8-openjdk-amd64 /usr/local/openjdk-8
