@@ -19,7 +19,9 @@ pipeline {
         }
         stage('Build') {
             steps {
+                sh 'cd ./deploy'
                 sh './gradlew build'
+                sh 'cd ../'
             }
         }
 
@@ -34,7 +36,7 @@ pipeline {
                 }
                 stage('Push Docker Image') {
                             steps {
-                                echo '=== Pushing simple-java-maven-app Docker Image ==='
+                                echo '=== Pushing sagan Docker Image ==='
                                 script {
 			          docker.withRegistry( '', registryCredential ) {
 				       dockerImage.push()
