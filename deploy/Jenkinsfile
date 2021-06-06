@@ -19,7 +19,9 @@ pipeline {
         }
         stage('Build') {
             steps {
-                sh 'cd ./deploy'
+                sh 'cd deploy'
+                sh 'ls -lrth'
+                sh 'pwd'
                 sh './gradlew build'
                 sh 'cd ../'
             }
