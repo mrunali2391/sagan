@@ -22,7 +22,7 @@ COPY gradle /usr/local/sagan
 COPY util /usr/local/sagan
 COPY style /usr/local/sagan
 COPY settings.gradle /usr/local/sagan
-COPY settings.gradle /usr/local/sagan
+COPY gradlew /usr/local/sagan
 COPY tools.jar /usr/local/openjdk-8/lib/tools.jar
 
 RUN ln -sf /usr/lib/jvm/java-8-openjdk-amd64 /usr/local/openjdk-8
