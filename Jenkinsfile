@@ -28,7 +28,7 @@ pipeline {
                             steps {
                                 echo '=== Building sagan Docker Image ==='
                                 script {
-                                    app = docker.build registry + ":$BUILD_NUMBER"
+                                    dockerImage = docker.build registry + ":$BUILD_NUMBER"
                                 }
                             }
                 }
