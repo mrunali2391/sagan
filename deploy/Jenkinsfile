@@ -25,7 +25,7 @@ pipeline {
                             cd  ./deploy
                             ./gradlew build                             
                             echo"This is $(pwd)"
-                            cd ../
+                            cd /var/lib/jenkins/workspace/sagan-deploy
                             echo"This is $(pwd)"
                             '''
                 //sh 'ls -lrth'
