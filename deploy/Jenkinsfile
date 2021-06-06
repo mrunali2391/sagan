@@ -24,15 +24,13 @@ pipeline {
                             echo "This is start $(pwd)"
                             cd  ./deploy
                             ./gradlew build                             
-                            echo"This is $(pwd)"
-                            cd /var/lib/jenkins/workspace/sagan-deploy
-                            echo"This is $(pwd)"
                             '''
-                //sh 'ls -lrth'
-                //sh 'pwd'
-                //sh './deploy/gradlew build'
-                //sh 'cd $WORKSPACE'
-                //sh 'pwd'
+                        sh script:'''
+                           #!/bin/bash
+                           echo "This is start $(pwd)"
+                           cd ../
+                           echo "This is $(pwd)"
+                           '''
             }
         }
 
