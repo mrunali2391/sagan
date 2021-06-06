@@ -14,23 +14,15 @@ RUN mkdir -p /usr/local/sagan
 # Set work dir
 WORKDIR /usr/local/
 
-COPY sagan-site /usr/local/sagan/
-COPY sagan-client /usr/local/sagan/
-COPY sagan-renderer /usr/local/sagan/
-COPY concourse /usr/local/sagan/
-COPY gradle /usr/local/sagan/
-COPY util /usr/local/sagan/
-COPY style /usr/local/sagan/
-COPY settings.gradle /usr/local/sagan/
-COPY gradlew /usr/local/sagan/
-COPY tools.jar /usr/local/openjdk-8/lib/tools.jar
+COPY sagan/* /usr/local/sagan
 
-RUN ln -sf /usr/lib/jvm/java-8-openjdk-amd64 /usr/local/openjdk-8
+COPY sagan/tools.jar /usr/local/openjdk-8/lib/tools.jar
+
 
 WORKDIR /usr/local/sagan
 
 # Add required files
-ADD entrypoint.sh ./
+ADD sagan/entrypoint.sh ./
 
 
 

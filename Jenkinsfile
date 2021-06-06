@@ -20,6 +20,7 @@ pipeline {
         stage('Build') {
             steps {
                 sh './gradlew build'
+                sh 'cp Dockerfile ../'
             }
         }
 
@@ -28,7 +29,8 @@ pipeline {
                             steps {
                                 echo '=== Building sagan Docker Image ==='
                                 script {
-                                    dockerImage = docker.build registry + ":$BUILD_NUMBER"
+                                    def dockerfile = 'Dockerfile'
+                                    docker.build("$registry:$BUILD_NUMBER", "-f ${dockerfile} ../")
                                 }
                             }
                 }
