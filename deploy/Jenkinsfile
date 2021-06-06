@@ -23,6 +23,7 @@ pipeline {
                 sh 'pwd'
                 sh './deploy/gradlew build'
                 sh 'cd $WORKSPACE'
+                sh 'pwd'
             }
         }
 
