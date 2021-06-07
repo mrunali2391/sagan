@@ -61,6 +61,7 @@ pipeline {
                 stage('Deployment on minikube') {
                                              steps{
                                              sh "whoami"
+                                             sh "ssh ubuntu@172.16.10.175 'hostname'"
                                                }
                                                                         }																		 
 																		 
