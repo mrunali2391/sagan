@@ -62,6 +62,8 @@ pipeline {
                                              steps{
                                              sh "whoami"
                                              sh "ssh ubuntu@172.16.10.175 'hostname'"
+                                             sh "ssh ubuntu@172.16.10.175 'kubectl get pod'"
+                                             sh "ssh ubuntu@172.16.10.175 'kubectl set image Deployment/sagan-spring sagan-spring=akshaygirpunje/sagan-deploy:$BUILD_NUMBER --record'"
                                                }
                                                                         }																		 
 																		 
