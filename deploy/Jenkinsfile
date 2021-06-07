@@ -63,11 +63,11 @@ pipeline {
                                              sh "whoami"
                                              sh "ssh ubuntu@172.16.10.175 'hostname'"
                                              sh "ssh ubuntu@172.16.10.175 'kubectl get pod'"
-											 sh "ssh ubuntu@172.16.10.175 'sed -i "s|IMAGENAME|${BUILD_NUMBER}|g" /home/ubuntu/sagan-deployment.yaml'"
-											 sh "ssh ubuntu@172.16.10.175 'kubectl apply -f /home/ubuntu/sagan-deployment.yaml'"
-											 sh "ssh ubuntu@172.16.10.175 'kubectl expose deployment sagan-deploy --type=NodePort --port=8080 --name=sagan-deploy-service'"
+                                             sh "ssh ubuntu@172.16.10.175 'sed -i 's|IMAGENAME|${BUILD_NUMBER}|g' /home/ubuntu/sagan-deployment.yaml'"
+                                             sh "ssh ubuntu@172.16.10.175 'kubectl apply -f /home/ubuntu/sagan-deployment.yaml'"
+                                             sh "ssh ubuntu@172.16.10.175 'kubectl expose deployment sagan-deploy --type=NodePort --port=8080 --name=sagan-deploy-service'"
                                              sh "ssh ubuntu@172.16.10.175 'kubectl set image Deployment/sagan-spring sagan-spring=akshaygirpunje/sagan-deploy:$BUILD_NUMBER --record'"
-											 sh "ssh ubuntu@172.16.10.175 'kubectl get  pod,deployment,svc,secrets'"
+                                             sh "ssh ubuntu@172.16.10.175 'kubectl get  pod,deployment,svc,secrets'"
                                                }
                                                                         }
 
