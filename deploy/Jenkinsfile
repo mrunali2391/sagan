@@ -5,7 +5,7 @@ pipeline {
      }
     environment {
         GITHUB = credentials('gitHubCredentials')
-        registry = "akshaygirpunje/sagan-deploy"
+        registry = "mruingle/sagan-deploy"
         registryCredential = "dockerHubCredentials"
         dockerImage = " "
 
@@ -61,11 +61,11 @@ pipeline {
                 stage('Deployment on minikube') {
                                              steps{
                                              sh "whoami"
-                                             sh "ssh ubuntu@172.16.10.175 'hostname'"
-                                             sh "ssh ubuntu@172.16.10.175 'kubectl get pod'"
-                                             sh "ssh ubuntu@172.16.10.175 'kubectl apply -f /home/ubuntu/sagan-deployment.yaml'"
-                                             sh "ssh ubuntu@172.16.10.175 'kubectl set image Deployment/sagan-deploy  sagan-deploy=akshaygirpunje/sagan-deploy:$BUILD_NUMBER --record'"
-                                             sh "ssh ubuntu@172.16.10.175 'kubectl get  pod,deployment,svc,secrets'"
+                                             sh "ssh ubuntu@172.16.10.167 'hostname'"
+                                             sh "ssh ubuntu@172.16.10.167 'kubectl get pod'"
+                                             sh "ssh ubuntu@172.16.10.167 'kubectl apply -f /home/ubuntu/sagan-deployment.yaml'"
+                                             sh "ssh ubuntu@172.16.10.167 'kubectl set image Deployment/sagan-deploy  sagan-deploy=akshaygirpunje/sagan-deploy:$BUILD_NUMBER --record'"
+                                             sh "ssh ubuntu@172.16.10.167 'kubectl get  pod,deployment,svc,secrets'"
                                                }
                                                                         }
 
