@@ -62,10 +62,10 @@ pipeline {
                                              steps{
                                              sh "whoami"
                                              sh "ssh ubuntu@172.16.10.218 'hostname'"
-                                             sh "ssh ubuntu@172.16.10.218 'kubectl get pod'"
-                                             sh "ssh ubuntu@172.16.10.218 'kubectl apply -f /home/ubuntu/sagan-deployment.yaml'"
-                                             sh "ssh ubuntu@172.16.10.218 'kubectl set image Deployment/sagan-deploy  sagan-deploy=mrunali2391/sagan-deploy:$BUILD_NUMBER --record'"
-                                             sh "ssh ubuntu@172.16.10.218 'kubectl get  pod,deployment,svc,secrets'"
+                                             sh "ssh ubuntu@172.16.10.218 'sudo kubectl get pod'"
+                                             sh "ssh ubuntu@172.16.10.218 'sudo kubectl apply -f /root/sagan-deployment.yaml'"
+                                             sh "ssh ubuntu@172.16.10.218 'sudo kubectl set image Deployment/sagan-deploy  sagan-deploy=mrunali2391/sagan-deploy:$BUILD_NUMBER --record'"
+                                             sh "ssh ubuntu@172.16.10.218 'sudo kubectl get  pod,deployment,svc,secrets'"
                                                }
                                                                         }
 
