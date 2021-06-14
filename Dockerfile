@@ -15,6 +15,7 @@ RUN mkdir -p /usr/local/sagan
 WORKDIR /usr/local/
 
 COPY deploy /usr/local/sagan/
+COPY .git /usr/local/sagan/
 COPY deploy/tools.jar /usr/local/openjdk-8/lib/tools.jar
 
 #RUN ln -sf /usr/lib/jvm/java-8-openjdk-amd64 /usr/local/openjdk-8
