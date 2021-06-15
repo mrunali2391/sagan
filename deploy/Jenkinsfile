@@ -8,7 +8,6 @@ pipeline {
         registry = "mruingle/sagan-deploy"
         registryCredential = "dockerHubCredentials"
         dockerImage = " "
-        minikube-ip= "172.16.10.244"
 
     }
 
@@ -63,13 +62,13 @@ pipeline {
                                              steps{
                                              sh "whoami"
                                              sh "scp -i aws-june-2021.pem /var/lib/jenkins/.ssh/id_rsa.pub ubuntu@172.16.10.244:/tmp"
-                                             sh "ssh -i  aws-june-2021.pem ubuntu@172.16.10.244 'cat /tmp/id_rsa.pub >> ~/.ssh/authorized_keys'"
+                                             sh "ssh -i  aws-june-2021.pem ubuntu@172.16.10.144 'cat /tmp/id_rsa.pub >> ~/.ssh/authorized_keys'"
 
-                                             sh "ssh ubuntu@minikube-ip 'hostname'"
-                                             sh "ssh ubuntu@minikube-ip 'sudo kubectl get pod'"
-                                             sh "ssh ubuntu@minikube-ip 'sudo kubectl apply -f /root/sagan-deployment.yaml'"
-                                             sh "ssh ubuntu@minikube-ip 'sudo kubectl set image Deployment/sagan-deploy  sagan-deploy=mrunali2391/sagan-deploy:$BUILD_NUMBER --record'"
-                                             sh "ssh ubuntu@minikube-ip 'sudo kubectl get  pod,deployment,svc,secrets'"
+                                             sh "ssh ubuntu@172.16.10.144 'hostname'"
+                                             sh "ssh ubuntu@172.16.10.144 'sudo kubectl get pod'"
+                                             sh "ssh ubuntu@172.16.10.144 'sudo kubectl apply -f /root/sagan-deployment.yaml'"
+                                             sh "ssh ubuntu@172.16.10.144 'sudo kubectl set image Deployment/sagan-deploy  sagan-deploy=mrunali2391/sagan-deploy:$BUILD_NUMBER --record'"
+                                             sh "ssh ubuntu@172.16.10.144 'sudo kubectl get  pod,deployment,svc,secrets'"
                                                }
                                                                         }
 
