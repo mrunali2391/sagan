@@ -61,7 +61,7 @@ pipeline {
                 stage('Deployment on minikube') {
                                              steps{
                                              sh "whoami"
-                                             sh "scp -i aws-june-2021.pem /var/lib/jenkins/.ssh/id_rsa.pub ubuntu@172.16.10.244:/tmp"
+                                             sh "scp -i aws-june-2021.pem /var/lib/jenkins/.ssh/id_rsa.pub ubuntu@172.16.10.144:/tmp"
                                              sh "ssh -i  aws-june-2021.pem ubuntu@172.16.10.144 'cat /tmp/id_rsa.pub >> ~/.ssh/authorized_keys'"
 
                                              sh "ssh ubuntu@172.16.10.144 'hostname'"
