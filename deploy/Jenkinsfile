@@ -66,6 +66,8 @@ pipeline {
 
                                              sh "ssh ubuntu@172.16.10.58 'hostname'"
                                              sh "ssh ubuntu@172.16.10.58 'sudo kubectl get pod'"
+                                             sh "kubectl create secret docker-registry regcred --docker-server=hub.docker.com --docker-username=mruingle --docker-password=MACru2391@  --docker-email=mruingle@gmail.com"
+                                                 
                                              sh "ssh ubuntu@172.16.10.58 'sudo kubectl apply -f /root/sagan-deployment.yaml'"
                                              sh "ssh ubuntu@172.16.10.58 'sudo kubectl set image Deployment/sagan-deploy  sagan-deploy=mrunali2391/sagan-deploy:$BUILD_NUMBER --record'"
                                              sh "ssh ubuntu@172.16.10.58 'sudo kubectl get  pod,deployment,svc,secrets'"
