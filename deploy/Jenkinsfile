@@ -61,9 +61,7 @@ pipeline {
                 stage('Deployment on minikube') {
                                              steps{
                                              sh "whoami"
-                                             sh "scp -i /var/lib/jenkins/aws-june-2021.pem -o StrictHostKeyChecking=no /var/lib/jenkins/.ssh/id_rsa.pub ubuntu@172.16.10.58:/tmp"
-                                             sh "ssh -i  /var/lib/jenkins/aws-june-2021.pem ubuntu@172.16.10.58 'cat /tmp/id_rsa.pub >> ~/.ssh/authorized_keys'"
-
+                                            
                                              sh "ssh ubuntu@172.16.10.58 'hostname'"
                                              sh "ssh ubuntu@172.16.10.58 'sudo kubectl get pod'"
                                              sh "ssh ubuntu@172.16.10.58 'kubectl create secret docker-registry regcred --docker-server=hub.docker.com --docker-username=mruingle --docker-password=MACru2391@  --docker-email=mruingle@gmail.com'"
