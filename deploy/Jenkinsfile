@@ -61,6 +61,8 @@ pipeline {
                 stage('Deployment on minikube') {
                                              steps{
                                              sh "whoami"
+                                             sh "sudo scp -i /var/lib/jenkins/.ssh/id_rsa -o StrctHostKeyChecking=no -r /var/lib/jenkins/.ssh/id_rsa.pub ubuntu@ip cat >> ~/.ssh/authorized_keys"
+
                                              sh "ssh ubuntu@172.16.10.218 'hostname'"
                                              sh "ssh ubuntu@172.16.10.218 'sudo kubectl get pod'"
                                              sh "ssh ubuntu@172.16.10.218 'sudo kubectl apply -f /root/sagan-deployment.yaml'"
